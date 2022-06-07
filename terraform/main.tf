@@ -19,8 +19,14 @@ data "aws_vpc" "selected" {
 }
 resource "aws_instance" "web_server" {
 ami = "ami-061392db613a6357b"
+key_name = "devops_key"    
 instance_type = "t2.micro"
+  root_block_device {
+  volume_type = "gp2"
+  volume_size = 16G
+  delete_on_termination = "true"
+}    
 tags {
-Name = "my_server"
+Name = "my_server"    
 }
 }
